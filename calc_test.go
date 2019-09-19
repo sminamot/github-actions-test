@@ -22,6 +22,12 @@ func TestAdd(t *testing.T) {
 			expect: 5,
 		},
 		{
+			name:   "5+(-10)",
+			x:      5,
+			y:      -10,
+			expect: 5,
+		},
+		{
 			name:   "-5+(-5)",
 			x:      -5,
 			y:      -5,
