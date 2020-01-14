@@ -15,3 +15,7 @@ jobs:
         branch=${GITHUB_REF##*/}
         echo $branch
         echo ${{ github.repository }}
+
+    - name: Echo2
+      run: |
+        echo $branch
