@@ -10,5 +10,5 @@ jobs:
     steps:
     - name: Echo
       run: |
-        echo $GITHUB_HEAD_REF
-        echo $GITHUB_WORKFLOW
+        echo $GITHUB_REF
+        echo ${GITHUB_REF##*/}
