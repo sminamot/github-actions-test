@@ -11,3 +11,4 @@ jobs:
     - name: Echo
       run: |
         echo $GITHUB_HEAD_REF
+        echo $GITHUB_WORKFLOW
