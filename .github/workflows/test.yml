@@ -7,15 +7,14 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
-    env:
-      REPOSITORY: {{ github.repository }}
     steps:
     - name: Echo
       run: |
         echo $GITHUB_REF
         echo ${GITHUB_REF##*/}
-        echo $REPOSITORY
+        echo ${{ github.repository }}
+        echo ::set-env name=hoge::fuga
 
     - name: Echo2
       run: |
-        echo $REPOSITORY
+        echo $hoge
