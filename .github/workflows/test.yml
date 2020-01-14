@@ -12,12 +12,12 @@ jobs:
       run: |
         echo $GITHUB_REF
         echo ${{ github.repository }}
-        branch=${GITHUB_REF##*/}
-        echo $branch
-        echo ::set-env name=branch::${branch}
+        BRANCH=${GITHUB_REF##*/}
+        echo $BRANCH
+        echo ::set-env name=BRANCH::${BRANCH}
         echo "==="
-        echo $branch
+        echo $BRANCH
 
     - name: Echo2
       run: |
-        echo $branch
+        echo $BRANCH
