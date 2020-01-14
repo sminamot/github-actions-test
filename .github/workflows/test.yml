@@ -8,16 +8,14 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     env:
-      BRANCH:
+      REPOSITORY: {{ github.repository }}
     steps:
     - name: Echo
       run: |
         echo $GITHUB_REF
         echo ${GITHUB_REF##*/}
-        BRANCH=${GITHUB_REF##*/}
-        echo $BRANCH
-        echo ${{ github.repository }}
+        echo $REPOSITORY
 
     - name: Echo2
       run: |
-        echo $BRANCH
+        echo $REPOSITORY
