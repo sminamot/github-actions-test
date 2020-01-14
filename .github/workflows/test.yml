@@ -7,15 +7,17 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+    env:
+      BRANCH:
     steps:
     - name: Echo
       run: |
         echo $GITHUB_REF
         echo ${GITHUB_REF##*/}
-        branch=${GITHUB_REF##*/}
-        echo $branch
+        BRANCH=${GITHUB_REF##*/}
+        echo $BRANCH
         echo ${{ github.repository }}
 
     - name: Echo2
       run: |
-        echo $branch
+        echo $BRANCH
