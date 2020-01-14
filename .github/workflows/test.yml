@@ -14,7 +14,7 @@ jobs:
         echo ${{ github.repository }}
         branch=${GITHUB_REF##*/}
         echo $branch
-        echo ::set-env name=branch::${GITHUB_REF##*/}
+        echo ::set-env name=branch::${branch}
         echo "==="
         echo $branch
 
