@@ -16,4 +16,14 @@ jobs:
         run: |
           echo $ISSUE_TITLE
           echo $ISSUE_LINK
-          echo ${{ github.event.issue }}
+          git clone https://github.com/sminamot/github-actions-test-private
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: sminamot/github-actions-test-private
+          path: external
+          #token: ${{ secrets.EX_GITHUB_TOKEN }}
+      - name: ls
+        run: |
+          ls
+          ls external
