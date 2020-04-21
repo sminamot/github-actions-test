@@ -2,7 +2,7 @@ name: issue-test
 
 on:
   issues:
-    types: opened
+    types: labeled
 
 jobs:
   print_detail:
