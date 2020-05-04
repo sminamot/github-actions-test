@@ -1,0 +1,15 @@
+name: Go
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v1
+    - name: diff
+      run: git diff --name-only
