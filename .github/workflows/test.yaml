@@ -15,5 +15,7 @@ jobs:
       run: git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }}
     - name: env
       run: |
+        pwd
+        ls -la
         VERSION=$(<.github/workflows/VERSION)
         echo $VERSION
