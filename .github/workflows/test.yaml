@@ -13,3 +13,7 @@ jobs:
       uses: actions/checkout@v1
     - name: diff
       run: git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }}
+    - name: env
+      run: |
+        VERSION=$(<.github/workflows/VERSION)
+        echo $VERSION
