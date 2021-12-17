@@ -12,6 +12,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: env
       run: |
-        echo TAG_NAME=$(TZ=Asia/Tokyo date +'%Y%m%d%H%M%S') >> $GITHUB_ENV
-        git tag -a "${{ env.TAG_NAME }}" -m "${{ env.TAG_NAME }}" --cleanup=whitespace
-        git push origin ${{ env.TAG_NAME }}
+        TAG_NAME=$(TZ=Asia/Tokyo date +'%Y%m%d%H%M%S')
+        git tag -a "$TAG_NAME" -m "$TAG_NAME" --cleanup=whitespace
+        git push origin $TAG_NAME
