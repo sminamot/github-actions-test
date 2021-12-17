@@ -1,4 +1,4 @@
-name: Go
+name: Create git tag
 on:
   push:
     branches:
@@ -6,16 +6,12 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: create_tag
     runs-on: ubuntu-latest
     steps:
-    - name: Check out
-      uses: actions/checkout@v1
-    - name: diff
-      run: git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }}
+    - uses: actions/checkout@v1
     - name: env
       run: |
-        pwd
-        ls -la
-        VERSION=$(<.github/workflows/VERSION)
-        echo $VERSION
+        echo TAG_NAME=$(TZ=Asia/Tokyo date +'%Y%m%d%H%M%S') > $GITHUB_ENV
+        git tag -a "$TAG_NAME" -m "$TAG_NAME" --cleanup=whitespace
+        git push origin $TAG_NAME
