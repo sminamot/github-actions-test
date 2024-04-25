@@ -16,8 +16,8 @@ jobs:
         run: |
           echo $ISSUE_TITLE
           echo $ISSUE_LINK
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: sminamot/github-actions-test-private
           path: external

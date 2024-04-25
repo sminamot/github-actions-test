@@ -9,7 +9,7 @@ jobs:
     name: create_tag
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: env
       run: |
         TAG_NAME=$(TZ=Asia/Tokyo date +'%Y%m%d%H%M%S')
