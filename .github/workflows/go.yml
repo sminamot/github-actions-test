@@ -22,8 +22,6 @@ jobs:
         #echo $VERSION
         echo "VERSION=$VERSION"
         make version
-      env:
-        VERSION: ${{ github.event.pull_request.head.sha:0:7 }}
 
     - name: Set up Go
       uses: actions/setup-go@v5
