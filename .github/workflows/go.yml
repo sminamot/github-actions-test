@@ -15,7 +15,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: echo commit sha
-      run: echo ${{ github.event.pull_request.head.sha }}
+      run: |
+        echo ${{ github.event.pull_request.head.sha }}
+        echo git rev-parse --short=7 ${{ github.event.pull_request.head.sha }}
 
     - name: Set up Go
       uses: actions/setup-go@v5
