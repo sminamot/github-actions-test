@@ -17,13 +17,11 @@ jobs:
     - name: echo commit sha
       run: |
         echo ${{ github.event.pull_request.head.sha }}
-        #VERSION=$(git rev-parse --short=7 ${{ github.event.pull_request.head.sha }})
-        #VERSION=${{ github.event.pull_request.head.sha }}
-        #echo "VERSION=$VERSION" >> $GITHUB_ENV
+        VERSION=$(git rev-parse --short=7 ${{ github.event.pull_request.head.sha }})
+        VERSION=${{ github.event.pull_request.head.sha }}
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
         echo $VERSION
-        make version
-      env:
-        VERSION: hoge
+        VERSION=$VERSION make version
 
     - name: Set up Go
       uses: actions/setup-go@v5
