@@ -9,4 +9,5 @@ endif
 
 .PHONY: version
 version:
-	@echo $(VERSION)
+	echo $(CI)
+	echo $(VERSION)
