@@ -18,7 +18,8 @@ jobs:
       run: |
         echo ${{ github.event.pull_request.head.sha }}
         git rev-parse --short=7 ${{ github.event.pull_request.head.sha }}
-        echo $USER
+        VERSION=${GITHUB_SHA:0:7}
+        make version
 
     - name: Set up Go
       uses: actions/setup-go@v5
