@@ -18,6 +18,7 @@ jobs:
       run: |
         echo ${{ github.event.pull_request.head.sha }}
         git rev-parse --short=7 ${{ github.event.pull_request.head.sha }}
+        echo $USER
 
     - name: Set up Go
       uses: actions/setup-go@v5
