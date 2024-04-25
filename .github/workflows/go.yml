@@ -18,7 +18,8 @@ jobs:
       run: |
         echo ${{ github.event.pull_request.head.sha }}
         git rev-parse --short=7 ${{ github.event.pull_request.head.sha }}
-        VERSION=${GITHUB_SHA:0:7}
+        VERSION=${{ github.event.pull_request.head.sha }}
+        echo $VERSION
         make version
 
     - name: Set up Go
