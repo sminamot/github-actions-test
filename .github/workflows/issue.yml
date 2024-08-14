@@ -38,7 +38,7 @@ jobs:
         edit-mode: replace
 
     - name: Delete comment
-      if: ${{ steps.fc.outputs.comment-id != '' && github.event.issue.comment-body == 'OK' }}
+      if: steps.fc.outputs.comment-id != '' && github.event.issue.body == 'OK'
       uses: actions/github-script@v7
       with:
         script: |
