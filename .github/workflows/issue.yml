@@ -34,14 +34,13 @@ jobs:
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        body: All OK
+        body: ${{ github.event.issue.body }}
         edit-mode: replace
 
     - name: Delete comment
       if: steps.fc.outputs.comment-id != '' && github.event.issue.body == 'OK'
       uses: actions/github-script@v7
       with:
-        github-token: ${{ secrets.PAT }}
         script: |
           github.rest.issues.deleteComment({
             owner: context.repo.owner,
