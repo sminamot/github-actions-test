@@ -15,12 +15,12 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         comment-author: 'github-actions[bot]'
 
-    - name: Create comment(OK)
-      if: steps.fc.outputs.comment-id == '' && github.event.issue.body == 'OK'
-      uses: peter-evans/create-or-update-comment@v4
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: All OK
+    #- name: Create comment(OK)
+    #  if: steps.fc.outputs.comment-id == '' && github.event.issue.body == 'OK'
+    #  uses: peter-evans/create-or-update-comment@v4
+    #  with:
+    #    issue-number: ${{ github.event.issue.number }}
+    #    body: All OK
 
     - name: Create comment(NG)
       if: steps.fc.outputs.comment-id == '' && github.event.issue.body != 'OK'
@@ -29,18 +29,30 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: ${{ github.event.issue.body }}
 
-    - name: Update comment(OK)
-      if: steps.fc.outputs.comment-id != '' && github.event.issue.body == 'OK'
+    - name: Update comment(NG)
+      if: steps.fc.outputs.comment-id != '' && github.event.issue.body != 'OK'
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         body: All OK
         edit-mode: replace
 
-    - name: Update comment(NG)
-      if: steps.fc.outputs.comment-id != '' && github.event.issue.body != 'OK'
-      uses: peter-evans/create-or-update-comment@v4
+    - name: Delete comment
+      if: steps.fc.outputs.comment-id != '' && github.event.issue.body == 'OK'
+      uses: actions/github-script@v7
       with:
-        comment-id: ${{ steps.fc.outputs.comment-id }}
-        body: ${{ github.event.issue.body }}
-        edit-mode: replace
+        github-token: ${{ secrets.PAT }}
+        script: |
+          github.rest.issues.deleteComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            comment_id: ${{ steps.fc.outputs.comment-id }},
+          })
+
+    #- name: Update comment(NG)
+    #  if: steps.fc.outputs.comment-id != '' && github.event.issue.body != 'OK'
+    #  uses: peter-evans/create-or-update-comment@v4
+    #  with:
+    #    comment-id: ${{ steps.fc.outputs.comment-id }}
+    #    body: ${{ github.event.issue.body }}
+    #    edit-mode: replace
