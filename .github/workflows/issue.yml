@@ -2,27 +2,16 @@ name: issue-test
 
 on:
   issues:
-    types: labeled
+    types: edited
 
 jobs:
-  print_detail:
-    if: contains(github.event.issue.labels.*.name, 'bug')
+  comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        env:
-          ISSUE_TITLE: ${{ github.event.issue.title}}
-          ISSUE_LINK: ${{ github.event.issue.html_url }}
-        run: |
-          echo $ISSUE_TITLE
-          echo $ISSUE_LINK
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - name: Comment
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          repository: sminamot/github-actions-test-private
-          path: external
-          #token: ${{ secrets.EX_GITHUB_TOKEN }}
-      - name: ls
-        run: |
-          ls
-          ls external
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a bug issue.
+            ${{ github.event.issue.html_url }}
