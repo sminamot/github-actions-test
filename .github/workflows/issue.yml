@@ -15,17 +15,32 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         comment-author: 'github-actions[bot]'
 
-    - name: Create comment
-      if: steps.fc.outputs.comment-id == ''
+    - name: Create comment(OK)
+      if: steps.fc.outputs.comment-id == '' && github.event.issue.body == 'OK'
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: OK
+
+    - name: Create comment(NG)
+      if: steps.fc.outputs.comment-id == '' && github.event.issue.body != 'OK'
       uses: peter-evans/create-or-update-comment@v4
       with:
         issue-number: ${{ github.event.issue.number }}
         body: ${{ github.event.issue.body }}
 
-    - name: Update comment
-      if: steps.fc.outputs.comment-id != ''
+    - name: Update comment(OK)
+      if: steps.fc.outputs.comment-id != '' && github.event.issue.body == 'OK'
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        body: ${{ steps.fc.outputs.comment-body }}
+        body: OK
+        edit-mode: replace
+
+    - name: Update comment(NG)
+      if: steps.fc.outputs.comment-id != '' && github.event.issue.body != 'OK'
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        body: ${{ github.event.issue.body }}
         edit-mode: replace
