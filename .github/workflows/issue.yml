@@ -34,6 +34,5 @@ jobs:
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-          #body: ${{ github.event.issue.body }}
         body: ${{ steps.fc.outputs.comment-body }}
         edit-mode: replace
