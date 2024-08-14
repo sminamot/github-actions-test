@@ -20,7 +20,7 @@ jobs:
       uses: peter-evans/create-or-update-comment@v4
       with:
         issue-number: ${{ github.event.issue.number }}
-        body: OK
+        body: All OK
 
     - name: Create comment(NG)
       if: steps.fc.outputs.comment-id == '' && github.event.issue.body != 'OK'
@@ -34,7 +34,7 @@ jobs:
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        body: OK
+        body: All OK
         edit-mode: replace
 
     - name: Update comment(NG)
