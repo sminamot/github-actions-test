@@ -22,15 +22,8 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: ${{ github.event.issue.body }}
 
-    - name: Delete comment
-      if: steps.fc.outputs.comment-id == '' && steps.fc.outputs.comment-body == 'delete'
-      uses: peter-evans/create-or-update-comment@v4
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: ${{ github.event.issue.body }}
-
     - name: Update comment
-      if: steps.fc.outputs.comment-id != '' && steps.fc.outputs.comment-body != 'delete'
+      if: steps.fc.outputs.comment-id != ''
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
