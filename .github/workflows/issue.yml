@@ -30,9 +30,10 @@ jobs:
         body: ${{ github.event.issue.body }}
 
     - name: Update comment
-      if: steps.fc.outputs.comment-id != ''
+      if: steps.fc.outputs.comment-id != '' && steps.fc.outputs.comment-body != 'delete'
       uses: peter-evans/create-or-update-comment@v4
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        body: ${{ github.event.issue.body }}
+          #body: ${{ github.event.issue.body }}
+        body: ${{ steps.fc.outputs.comment-body }}
         edit-mode: replace
